@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'android-maven'
 
 repositories {
     mavenCentral()
@@ -20,5 +21,31 @@ dependencies {
     compile 'com.android.support:support-v4:19.1.0'
 }
 
-// Used to push in maven
-apply from: '../maven_push.gradle'
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            pom.groupId = GROUP
+            pom.artifactId = POM_ARTIFACT_ID
+            pom.version = VERSION_NAME
+
+            repository(url: localMavenUrl) {
+                authentication(userName: localMavenUser, password: localMavenPassword)
+            }
+
+            snapshotRepository(url: localMavenSnapshotUrl) {
+                authentication(userName: localMavenUser, password: localMavenPassword)
+            }
+        }
+
+    }
+}
+
+install {
+   repositories {
+       mavenInstaller {
+           pom.groupId = GROUP
+           pom.artifactId = POM_ARTIFACT_ID
+           pom.version = VERSION_NAME
+       }
+   }
+}
