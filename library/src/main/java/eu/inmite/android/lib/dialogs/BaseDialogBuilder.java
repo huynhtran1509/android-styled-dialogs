@@ -11,7 +11,7 @@ import android.support.v4.app.FragmentManager;
  *
  * @author Tomas Vondracek
  */
-abstract class BaseDialogBuilder<T extends BaseDialogBuilder<T>> {
+public abstract class BaseDialogBuilder<T extends BaseDialogBuilder<T>> {
 
 	public final static String ARG_REQUEST_CODE = "request_code";
 	public final static String ARG_CANCELABLE_ON_TOUCH_OUTSIDE = "cancelable_oto";
@@ -43,7 +43,7 @@ abstract class BaseDialogBuilder<T extends BaseDialogBuilder<T>> {
 		mCancelable = cancelable;
 		return self();
 	}
-	
+
 	public T setCancelableOnTouchOutside(boolean cancelable) {
 		mCancelableOnTouchOutside = cancelable;
 		if (cancelable) {
@@ -73,9 +73,9 @@ abstract class BaseDialogBuilder<T extends BaseDialogBuilder<T>> {
 		final Bundle args = prepareArguments();
 
 		final BaseDialogFragment fragment = (BaseDialogFragment) Fragment.instantiate(mContext, mClass.getName(), args);
-	
+
 		args.putBoolean(ARG_CANCELABLE_ON_TOUCH_OUTSIDE, mCancelableOnTouchOutside);
-		
+
 		if (mTargetFragment != null) {
 			fragment.setTargetFragment(mTargetFragment, mRequestCode);
 		} else {
@@ -83,7 +83,7 @@ abstract class BaseDialogBuilder<T extends BaseDialogBuilder<T>> {
 		}
 		fragment.setCancelable(mCancelable);
 		fragment.show(mFragmentManager, mTag);
-		
+
 		return fragment;
 	}
 }
