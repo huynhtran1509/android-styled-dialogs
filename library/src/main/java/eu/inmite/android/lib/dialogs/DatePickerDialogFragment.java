@@ -155,7 +155,7 @@ public class DatePickerDialogFragment extends BaseDialogFragment {
         private boolean mShowDefaultButton = true;
         private boolean m24h;
 
-        protected SimpleDialogBuilder(Context context, FragmentManager fragmentManager, Class<? extends DatePickerDialogFragment> clazz) {
+        public SimpleDialogBuilder(Context context, FragmentManager fragmentManager, Class<? extends DatePickerDialogFragment> clazz) {
             super(context, fragmentManager, clazz);
         }
 
